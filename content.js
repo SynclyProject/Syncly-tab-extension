@@ -1,5 +1,10 @@
 // Content Script - 웹 페이지에서 Extension과 통신할 수 있게 해줌
 
+// Extension ID를 CustomEvent로 페이지에 전달
+window.dispatchEvent(new CustomEvent('SYNCLY_EXTENSION_READY', {
+  detail: { extensionId: chrome.runtime.id }
+}));
+
 // inject.js 파일을 페이지 컨텍스트에 주입
 const script = document.createElement('script');
 script.src = chrome.runtime.getURL('inject.js');
